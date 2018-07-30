@@ -5,12 +5,18 @@ const ROOT_URL =`https://api.openweathermap.org/data/2.5/forecast?appid=${API_KE
 
 export const FETCH_WEATHER = 'FETCH_WEATHER';
 
-export function fetchWeather(term){
-  const url = `${ROOT_URL}&q=${term}`;
+export function fetchWeather(city){
+  const url = `${ROOT_URL}&q=${city}`;
+  
+  // Axios returns a promise, store it in request
   const request = axios.get(url);
   
+  console.log('Request:', request);
+  
   return {
-    type: FETCH_WEATHER
+    type: FETCH_WEATHER,
+    // returning the promise as the payload
+    payload: request
   };
 }
 
